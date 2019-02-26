@@ -1,0 +1,16 @@
+{
+  "name": "bitelio",
+  "version": "1.0.0",
+  "description": "web",
+  "author": "Guillermo Guirao Aguilar",
+  "license": "ISC",
+  "scripts": {
+    "serve": "parcel html/index.pug",
+    "build": "parcel build html/index.pug"
+  },
+  "devDependencies": {
+    "parcel": "^1.11.0",
+    "pug": "^2.0.3",
+    "stylus": "^0.54.5"
+  }
+}
