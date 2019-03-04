@@ -6,9 +6,13 @@
   "license": "ISC",
   "scripts": {
     "serve": "parcel html/index.pug",
-    "build": "parcel build html/index.pug"
+    "prebuild": "rm -r dist",
+    "build": "parcel build html/index.pug",
+    "prepublish": "npm run build",
+    "publish": "npx aws s3 sync dist s3://bitelio.com --profile sre --size-only --delete --dryrun"
   },
   "devDependencies": {
+    "aws-sdk": "^2.413.0",
     "parcel": "^1.11.0",
     "pug": "^2.0.3",
     "stylus": "^0.54.5"
