@@ -11,9 +11,18 @@
     "prepublish": "npm run build",
     "publish": "npx aws s3 sync dist s3://bitelio.com --profile sre --size-only --delete"
   },
+  "cache": {
+    "strategy": "inject",
+    "swSrc": "./src/sw.js",
+    "swDest": "sw.js",
+    "globPatterns": [
+      "index.html"
+    ]
+  },
   "devDependencies": {
     "aws-sdk": "^2.504.0",
     "parcel": "^1.12.3",
+    "parcel-plugin-sw-cache": "^0.3.1",
     "pug": "^2.0.4",
     "stylus": "^0.54.5"
   }
