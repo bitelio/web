@@ -5,9 +5,9 @@
   "author": "Guillermo Guirao Aguilar",
   "license": "ISC",
   "scripts": {
-    "serve": "parcel html/index.pug",
+    "serve": "parcel src/index.pug",
     "prebuild": "rm -r dist",
-    "build": "parcel build html/index.pug",
+    "build": "parcel build src/index.pug",
     "prepublish": "npm run build",
     "publish": "npx aws s3 sync dist s3://bitelio.com --profile sre --size-only --delete --dryrun"
   },
