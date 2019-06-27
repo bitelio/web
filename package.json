@@ -6,14 +6,14 @@
   "license": "ISC",
   "scripts": {
     "serve": "parcel src/index.pug",
-    "prebuild": "rm -r dist",
+    "prebuild": "rm -rf dist",
     "build": "parcel build src/index.pug",
     "prepublish": "npm run build",
-    "publish": "npx aws s3 sync dist s3://bitelio.com --profile sre --size-only --delete --dryrun"
+    "publish": "npx aws s3 sync dist s3://bitelio.com --profile sre --size-only --delete"
   },
   "devDependencies": {
-    "aws-sdk": "^2.413.0",
-    "parcel": "^1.11.0",
+    "aws-sdk": "^2.483.0",
+    "parcel": "^1.12.3",
     "pug": "^2.0.3",
     "stylus": "^0.54.5"
   }
