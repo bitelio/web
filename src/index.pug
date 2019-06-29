@@ -2,16 +2,6 @@ extends main
 
 block styles
   link(rel='stylesheet' href='/css/index.styl')
-  link(rel='icon' type='image/x-icon' href='/favicon.ico')
-  link(rel='apple-touch-icon' type='image/png' sizes='180x180' href='/apple-touch-icon.png')
-  link(rel='shortcut icon' type='image/png' sizes='192x192' href='/android-chrome-192x192.png')
-  link(rel='mask-icon' href='/safari-pinned-tab.svg' color='#ffffff')
-  meta(name='msapplication-TileColor' content='#ffffff')
-  meta(name='msapplication-TileImage' content='/mstile-144x144.png')
-  meta(name='msapplication-tooltip' content='Business Intelligence')
-  meta(name='msapplication-config' content='/ieconfig.xml')
-  meta(name='application-name' content='Bitelio')
-  meta(name='theme-color' content='#000000')
 
 block content
   #primary
@@ -32,7 +22,7 @@ block content
       p Whether you have a clear need or just want to learn about what bitelio can do for you, do not hesitate reaching out to us. We will be pleased to evaluate your case and offer advice with no strings attached.
       button(onclick='contact()') Contact
 
-    a(href='/impressum.pug') Impressum
+    a(href='/impressum.pug' aria-label="Impressum") Impressum
     a(href='/robots.txt')
 
 block scripts
