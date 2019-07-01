@@ -5,9 +5,9 @@
   "author": "Guillermo Guirao Aguilar",
   "license": "ISC",
   "scripts": {
-    "serve": "parcel src/{index.pug,404.pug,robots.txt}",
+    "serve": "parcel src/{index.pug,404.pug,robots.txt,favicon.ico}",
     "prebuild": "rm -rf dist",
-    "build": "parcel build src/{index.pug,404.pug,robots.txt} --no-source-maps",
+    "build": "parcel build src/{index.pug,404.pug,robots.txt,favicon.ico} --no-source-maps",
     "prepublish": "npm run build",
     "publish": "npx aws s3 sync dist s3://bitelio.com --profile sre --size-only --delete"
   },
