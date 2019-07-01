@@ -119,8 +119,9 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
 
     viewer_protocol_policy = "redirect-to-https"
     min_ttl = 0
-    default_ttl = 86400
-    max_ttl = 31536000
+    default_ttl = 3600
+    max_ttl = 86400
+    compress = true
   }
   viewer_certificate {
     acm_certificate_arn = "arn:aws:acm:us-east-1:561291244739:certificate/b2a1a1fe-6189-415b-b34c-29fbafed3551"
@@ -130,6 +131,11 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     geo_restriction {
       restriction_type = "none"
     }
+  }
+  custom_error_response {
+    error_code = 404
+    response_code = 404
+    response_page_path = "/404.html"
   }
 }
 

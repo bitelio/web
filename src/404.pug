@@ -1,0 +1,12 @@
+extends main
+
+block styles
+  link(rel='stylesheet' href='/css/index.styl')
+
+block content
+  #primary
+    .centered
+      a(href='/' aria-label='Home')
+        include /assets/logo.svg
+      h1(style='font-size: 64px') 404
+      p(style='font-size: 32px') Page not found
