@@ -12,9 +12,9 @@
     "publish": "npx aws s3 sync dist s3://bitelio.com --profile sre --size-only --delete"
   },
   "devDependencies": {
-    "aws-sdk": "^2.483.0",
+    "aws-sdk": "^2.504.0",
     "parcel": "^1.12.3",
-    "pug": "^2.0.3",
+    "pug": "^2.0.4",
     "stylus": "^0.54.5"
   }
 }
