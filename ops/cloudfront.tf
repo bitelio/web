@@ -30,7 +30,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   }
 
   viewer_certificate {
-    acm_certificate_arn      = "arn:aws:acm:us-east-1:561291244739:certificate/b2a1a1fe-6189-415b-b34c-29fbafed3551"
+    acm_certificate_arn      = aws_acm_certificate.certificate.arn
     ssl_support_method       = "sni-only"
     minimum_protocol_version = "TLSv1.1_2016"
   }
