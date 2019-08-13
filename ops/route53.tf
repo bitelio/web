@@ -37,6 +37,14 @@ resource "aws_route53_record" "caa" {
   ]
 }
 
+resource "aws_route53_record" "google" {
+  zone_id = aws_route53_zone.primary.zone_id
+  name    = "bitelio.com."
+  type    = "TXT"
+  ttl     = 3600
+  records = ["google-site-verification=aiNQ7-uaNqQKW-hUdEO4m5mL0EpBHKaPh2XD-MZZYYU"]
+}
+
 resource "aws_route53_record" "certificate_validation" {
   zone_id = aws_route53_zone.primary.zone_id
   name    = aws_acm_certificate.certificate.domain_validation_options[0].resource_record_name
