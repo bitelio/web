@@ -4,7 +4,7 @@ resource "aws_route53_zone" "primary" {
 
 resource "aws_route53_record" "bitelio-com-A" {
   zone_id = aws_route53_zone.primary.zone_id
-  name    = "bitelio.com"
+  name    = ""
   type    = "A"
 
   alias {
@@ -16,7 +16,7 @@ resource "aws_route53_record" "bitelio-com-A" {
 
 resource "aws_route53_record" "www-bitelio-com-A" {
   zone_id = aws_route53_zone.primary.zone_id
-  name    = "www.bitelio.com"
+  name    = "www"
   type    = "A"
 
   alias {
@@ -28,7 +28,7 @@ resource "aws_route53_record" "www-bitelio-com-A" {
 
 resource "aws_route53_record" "caa" {
   zone_id = aws_route53_zone.primary.zone_id
-  name    = "bitelio.com."
+  name    = ""
   type    = "CAA"
   ttl     = 3600
   records = [
@@ -37,12 +37,50 @@ resource "aws_route53_record" "caa" {
   ]
 }
 
-resource "aws_route53_record" "google" {
+resource "aws_route53_record" "bitelio-com-MX" {
   zone_id = aws_route53_zone.primary.zone_id
-  name    = "bitelio.com."
+  name    = ""
+  type    = "MX"
+  ttl     = 3600
+  records = [
+    "10 mx1.privateemail.com",
+    "10 mx2.privateemail.com",
+  ]
+}
+
+resource "aws_route53_record" "bitelio-com-TXT" {
+  zone_id = aws_route53_zone.primary.zone_id
+  name    = ""
   type    = "TXT"
   ttl     = 3600
-  records = ["google-site-verification=aiNQ7-uaNqQKW-hUdEO4m5mL0EpBHKaPh2XD-MZZYYU"]
+  records = [
+    "v=spf1 include:spf.privateemail.com ~all",
+    "google-site-verification=aiNQ7-uaNqQKW-hUdEO4m5mL0EpBHKaPh2XD-MZZYYU",
+  ]
+}
+
+resource "aws_route53_record" "bitelio-com-mail" {
+  zone_id = aws_route53_zone.primary.zone_id
+  name    = "mail"
+  type    = "CNAME"
+  ttl     = 3600
+  records = ["privateemail.com"]
+}
+
+resource "aws_route53_record" "bitelio-com-autodiscover" {
+  zone_id = aws_route53_zone.primary.zone_id
+  name    = "autodiscover"
+  type    = "CNAME"
+  ttl     = 3600
+  records = ["privateemail.com"]
+}
+
+resource "aws_route53_record" "bitelio-com-autoconfig" {
+  zone_id = aws_route53_zone.primary.zone_id
+  name    = "autoconfig"
+  type    = "CNAME"
+  ttl     = 3600
+  records = ["privateemail.com"]
 }
 
 resource "aws_route53_record" "certificate_validation" {
