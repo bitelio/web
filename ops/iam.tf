@@ -1,21 +1,19 @@
+data "aws_iam_policy_document" "lambda" {
+  statement {
+    sid     = "LambdaAssumeRole"
+    actions = ["sts:AssumeRole"]
+
+    principals {
+      type        = "Service"
+      identifiers = [
+        "lambda.amazonaws.com",
+        "edgelambda.amazonaws.com",
+      ]
+    }
+  }
+}
+
 resource "aws_iam_role" "lambda" {
   name               = "lambda"
-  assume_role_policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": "sts:AssumeRole",
-      "Principal": {
-        "Service": [
-          "lambda.amazonaws.com",
-          "edgelambda.amazonaws.com"
-        ]
-      },
-      "Effect": "Allow",
-      "Sid": ""
-    }
-  ]
-}
-EOF
+  assume_role_policy = data.aws_iam_policy_document.lambda.json
 }
