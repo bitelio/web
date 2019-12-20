@@ -7,9 +7,7 @@
   "scripts": {
     "serve": "parcel src/{index.pug,404.pug,robots.txt,sitemap.txt,favicon.ico}",
     "prebuild": "rm -rf dist",
-    "build": "parcel build src/{index.pug,404.pug,robots.txt,sitemap.txt,favicon.ico} --no-source-maps",
-    "prepublish": "npm run build",
-    "publish": "npx aws s3 sync dist s3://bitelio.com --profile sre --size-only --delete"
+    "build": "parcel build src/{index.pug,404.pug,robots.txt,sitemap.txt,favicon.ico} --no-source-maps"
   },
   "cache": {
     "strategy": "inject",
