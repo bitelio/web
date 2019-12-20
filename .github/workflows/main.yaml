@@ -1,0 +1,39 @@
+name: CD
+
+on:
+  push:
+    branch:
+      - master
+      - testing
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Cache node modules
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+    - name: Build
+      run: npm run build
+    - name: Assume production role
+      if: github.ref == 'refs/heads/master'
+      uses: nordcloud/aws-assume-role@master
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      with:
+        args: -r ${{ secrets.AWS_PRODUCTION_ROLE_ARN }}
+    - name: Assume testing role
+      if: github.ref == 'refs/heads/testing'
+      uses: nordcloud/aws-assume-role@master
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      with:
+        args: -r ${{ secrets.AWS_TESTING_ROLE_ARN }}
+    - name: Sync to S3
+      run: npx aws s3 sync dist s3://bitelio.$([[ $GITHUB_REF == 'refs/heads/master' ]] && echo 'com' || echo 'dev') --size-only --delete
