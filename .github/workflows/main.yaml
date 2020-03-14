@@ -31,9 +31,9 @@ jobs:
         TESTING: ${{ secrets.AWS_TESTING_ACCOUNT_ID }}
       run: |
         ACCOUNT_ID=$([[ $GITHUB_REF == 'master' ]] && echo $PRODUCTION || echo $TESTING)
-        CREDENTIALS=$(aws sts assume-role --role-arn "arn:aws:iam::${ACCOUNT_ID}:role/cd_web" --role-session-name "CD" --duration-seconds 900)
-        export AWS_ACCESS_KEY_ID=$(echo $CREDENTIALS | cut -d '"' -f 28)
-        export AWS_SECRET_ACCESS_KEY=$(echo $CREDENTIALS | cut -d '"' -f 16)
-        export AWS_SESSION_TOKEN=$(echo $CREDENTIALS | cut -d '"' -f 20)
-        BUCKET="bitelio.$([[ $GITHUB_REF == 'master' ]] && echo com || echo dev)"
-        npx aws s3 sync dist "s3://${BUCKET}" --size-only --delete
+        #CREDENTIALS=$(aws sts assume-role --role-arn "arn:aws:iam::${ACCOUNT_ID}:role/cd_web" --role-session-name "CD" --duration-seconds 900)
+        #export AWS_ACCESS_KEY_ID=$(echo $CREDENTIALS | cut -d '"' -f 28)
+        #export AWS_SECRET_ACCESS_KEY=$(echo $CREDENTIALS | cut -d '"' -f 16)
+        #export AWS_SESSION_TOKEN=$(echo $CREDENTIALS | cut -d '"' -f 20)
+        #BUCKET="bitelio.$([[ $GITHUB_REF == 'master' ]] && echo com || echo dev)"
+        #npx aws s3 sync dist "s3://${BUCKET}" --size-only --delete
