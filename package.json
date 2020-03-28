@@ -5,9 +5,9 @@
   "author": "Guillermo Guirao Aguilar",
   "license": "ISC",
   "scripts": {
-    "serve": "parcel src/{index.pug,404.pug,robots.txt,sitemap.txt,favicon.ico}",
+    "serve": "parcel src/{index.pug,404.pug}",
     "prebuild": "rm -rf dist",
-    "build": "parcel build src/{index.pug,404.pug,robots.txt,sitemap.txt,favicon.ico} --no-source-maps"
+    "build": "parcel build src/{index.pug,404.pug} --no-source-maps"
   },
   "cache": {
     "strategy": "inject",
