@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "aws-sdk": "^2.839.0",
-    "parcel": "^1.12.4",
+    "parcel": "^2.8.2",
     "parcel-plugin-sw-cache": "^0.3.1",
     "pug": "^3.0.0",
     "stylus": "^0.54.8"
